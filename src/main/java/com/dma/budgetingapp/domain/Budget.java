@@ -10,6 +10,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -17,19 +19,17 @@ import javax.persistence.Table;
 import lombok.Data;
 
 @Entity
-@Table(name = "users")
+@Table(name = "budget")
 @Data
-public class User {
+public class Budget {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private String username;
-	private String password;
-	
-	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "users")
-	private Set<Budget> budgets = new TreeSet<>();
-
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "user")
-	private Set<Authority> authorities = new HashSet<>();
+	private String name;
+	@ManyToMany
+	@JoinTable(inverseJoinColumns = @JoinColumn(name = "user_id"), joinColumns=@JoinColumn(name = "budget_id"))
+	private Set<User> users = new HashSet<>();
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "budget")
+	private Set<Group> groups = new TreeSet<>();
 }

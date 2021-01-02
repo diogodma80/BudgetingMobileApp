@@ -5,3 +5,7 @@
  - Use Lombok annotation in the domain classes.
 
 - Set up the connection parameters in the application.properties file.
+
+- Included 'Budget' domain object and rearranged the entities relationship
+
+- Spring Securit configuration
