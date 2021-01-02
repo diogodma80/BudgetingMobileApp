@@ -1,2 +1,7 @@
 - Create the domain objects.
  - Category, User, Transaction and Group.
+ 
+- Assigning entities relationships.
+ - Use Lombok annotation in the domain classes.
+
+- Set up the connection parameters in the application.properties file.
